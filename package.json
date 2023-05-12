@@ -2,10 +2,11 @@
   "name": "objects-collector",
   "version": "0.0.1",
   "description": "unites multiple object into one.",
-  "main": "index.ts",
+  "main": "dist/index.js",
+  "types":"dist/index.d.ts",
   "scripts": {
     "build": "tsc",
-    "test": "jest --config jestconfig.json",
+    "test": "jest --config jest.config.js",
     "start": "tsc && node dist/index.js",
     "dev": "concurrently --kill-others --names \"BUILD,RUN\" -c \"bgBlue.bold,bgMagenta.bold\" \"tsc -w\" \"nodemon -q -w dist dist/index.js\"",
     "tsc": "tsc",
