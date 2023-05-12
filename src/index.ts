@@ -14,7 +14,7 @@ const defaultOptions = {
   skipOnErrors: false,
   logErrors: true,
 };
-export class DeepCollector {
+ class DeepCollector {
   collection: ICollection;
   countSuccess: number;
   countFailed: number;
@@ -109,3 +109,6 @@ export class DeepCollector {
     }
   };
 }
+
+
+export default DeepCollector;
