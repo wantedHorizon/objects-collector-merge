@@ -1,7 +1,13 @@
-console.log("asfasf");
 import Clone from "@ungap/structured-clone";
+interface ICollection {
+  [key: string]: ICollection | BasicType[];
+}
+interface IObject {
+  [key: string]: IObject | BasicType;
+}
+type BasicType = string | number | null | undefined | Array<unknown>;
 class DeepCollector {
-  collection: unknown;
+  collection: ICollection;
   countSuccess: number;
   countFailed: number;
   constructor() {
@@ -10,31 +16,56 @@ class DeepCollector {
     this.countFailed = 0;
   }
 
-  add(object: unknown) {
-    if (!(object instanceof Object)) {
-      throw new Error("invalid object");
-    }
+  add(object: unknown):boolean {
+    try {
+      if (this.checkType(object) !== "object") {
+        throw new Error("invalid object");
+      }
 
-    const newCollection = Clone(this.collection);
+      const newCollection = Clone(this.collection);
+      this.merge(newCollection, Clone(object) as IObject);
+
+      this.collection = newCollection;
+      this.countSuccess++;
+      return true;
+    } catch (e) {
+      this.countFailed++;
+      return false;
+    }
 
     //left addition
   }
 
-  merge = (collection, object) => {
+  merge = (collection: ICollection, object: IObject) => {
     Object.keys(object).forEach(key => {
       const type = this.checkType(object[key]);
       if (type === "object") {
+        if (!collection[key]) {
+          collection[key] = {} as ICollection;
+        }
+        if (Array.isArray(collection)) {
+          throw new Error("expected BasicType received complex object ");
+        }
+        this.merge(collection[key] as ICollection, object[key] as IObject);
       } else if (type === "array") {
+        if (!Array.isArray(collection)) {
+          throw new Error("expected complex object ");
+        }
         if (!collection[key]) {
           collection[key] = [];
         }
 
-        collection[key] = [...collection[key], ...object[key]];
+        const arr: BasicType[] = collection[key] as BasicType[];
+        collection[key] = [...arr, ...(object[key] as BasicType[])];
       } else {
+        if (!Array.isArray(collection[key])) {
+          throw new Error("expected complex object ");
+        }
         if (!collection[key]) {
           collection[key] = [];
         }
 
+        //@ts-ignore
         collection[key].push(object);
       }
     });
