@@ -1,9 +1,9 @@
 import { DeepCollector } from "../src/index";
-import { basicObjects, results } from "./jsons";
+import { basicObjects, level2Objects, results } from "./jsons";
 
 import structuredClone from "@ungap/structured-clone";
 const initNewCollector = () => {
-  return new DeepCollector();
+  return new DeepCollector({ skipOnErrors: true,logErrors:false });
 };
 
 describe("types validation", () => {
@@ -39,22 +39,55 @@ describe("types validation", () => {
 });
 describe("testing simple level 1 ", () => {
   const collector = initNewCollector();
-  console.log("collector", collector);
 
   test("add one object", () => {
     const res = collector.add(basicObjects.simpleObject);
 
-    expect(res).toBe(true)
+    expect(res).toBe(true);
     expect(collector.countFailed).toBe(0);
     expect(collector.countSuccess).toBe(1);
-    expect(collector.collection).toEqual(results.test1)
+    expect(collector.collection).toEqual(results.test1);
   });
 
-  test("add string instead of object", ()=> {
+  test("add string instead of object", () => {
     const res = collector.add("");
-    expect(res).toBe(false)
+    expect(res).toBe(false);
     expect(collector.countFailed).toBe(1);
     expect(collector.countSuccess).toBe(1);
+  });
 
-  })
+  test("add string instead of object", () => {
+    const res = collector.add(results.test1Fail);
+    expect(res).toBe(false);
+    expect(collector.countFailed).toBe(2);
+    expect(collector.countSuccess).toBe(1);
+  });
+});
+
+describe("testing complex level 2 ", () => {
+  const collector = initNewCollector();
+
+  test("add one object", () => {
+    const res = collector.add(level2Objects.complexObject1);
+
+    expect(res).toBe(true);
+    expect(collector.countFailed).toBe(0);
+    expect(collector.countSuccess).toBe(1);
+
+    expect(collector.collection).toEqual(results.complex1);
+  });
+
+  test("valid second object", () => {
+    const res = collector.add(level2Objects.complexObject2);
+    expect(res).toBe(true);
+    expect(collector.countFailed).toBe(0);
+    expect(collector.countSuccess).toBe(2);
+  });
+
+  test("invalid field of object instead of string ", () => {
+    const res = collector.add(level2Objects.complexObject2Fail);
+    expect(res).toBe(false);
+    expect(collector.countFailed).toBe(1);
+    expect(collector.countSuccess).toBe(2);
+  });
 });

@@ -5,15 +5,26 @@ interface ICollection {
 interface IObject {
   [key: string]: IObject | BasicType;
 }
+interface IOptions {
+  skipOnErrors: boolean;
+  logErrors: boolean;
+}
 type BasicType = string | number | null | undefined | Array<unknown>;
+const defaultOptions = {
+  skipOnErrors: false,
+  logErrors: true,
+};
 export class DeepCollector {
   collection: ICollection;
   countSuccess: number;
   countFailed: number;
-  constructor() {
+  options: IOptions;
+
+  constructor(options: IOptions = defaultOptions) {
     this.collection = {};
     this.countSuccess = 0;
     this.countFailed = 0;
+    this.options = options;
   }
 
   add(object: unknown): boolean {
@@ -23,14 +34,21 @@ export class DeepCollector {
       }
 
       const newCollection = Clone(this.collection);
-      this.merge(newCollection, Clone(object) as IObject);
+      this.merge(newCollection, Clone(object) as IObject, "");
 
       this.collection = newCollection;
       this.countSuccess++;
       return true;
     } catch (e) {
-      console.log(e);
+      if (this.options.logErrors) {
+        console.log(
+          `merge number: ${this.countFailed + this.countSuccess + 1} \n ${e}`
+        );
+      }
 
+      if (!this.options.skipOnErrors) {
+        throw e;
+      }
       this.countFailed++;
       return false;
     }
@@ -38,22 +56,26 @@ export class DeepCollector {
     //left addition
   }
 
-  merge = (collection: ICollection, object: IObject) => {
+  merge = (collection: ICollection, object: IObject, loc: string) => {
     Object.keys(object).forEach(key => {
       const type = this.checkType(object[key]);
       if (type === "object") {
-        console.log("object", { object: object[key], key, type });
-
         if (!collection[key]) {
           collection[key] = {} as ICollection;
         }
-        if (Array.isArray(collection)) {
-          throw new Error("expected BasicType received complex object ");
+        if (Array.isArray(collection[key])) {
+          throw new Error(
+            "expected BasicType received complex object, location: " + loc
+          );
         }
-        this.merge(collection[key] as ICollection, object[key] as IObject);
+        this.merge(
+          collection[key] as ICollection,
+          object[key] as IObject,
+          (loc += "." + key)
+        );
       } else if (type === "array") {
-        if (!Array.isArray(collection)) {
-          throw new Error("expected complex object ");
+        if (collection[key] != null && !Array.isArray(collection[key])) {
+          throw new Error("expected complex object, location: " + loc);
         }
         if (!collection[key]) {
           collection[key] = [];
