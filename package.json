@@ -1,5 +1,5 @@
 {
-  "name": "deep-collector",
+  "name": "objects-collector",
   "version": "0.0.1",
   "description": "unites multiple object into one.",
   "main": "index.ts",
