@@ -1,33 +1,35 @@
+/* eslint-disable @typescript-eslint/restrict-template-expressions */
+/* eslint-disable @typescript-eslint/strict-boolean-expressions */
 import Clone from "@ungap/structured-clone";
 interface ICollection {
-  [key: string]: ICollection | BasicType[];
+  [key: string]: ICollection | BasicType[]
 }
 interface IObject {
-  [key: string]: IObject | BasicType;
+  [key: string]: IObject | BasicType
 }
 interface IOptions {
-  skipOnErrors: boolean;
-  logErrors: boolean;
+  skipOnErrors: boolean
+  logErrors: boolean
 }
-type BasicType = string | number | null | undefined | Array<unknown>;
+type BasicType = string | number | null | undefined | unknown[];
 const defaultOptions = {
   skipOnErrors: false,
-  logErrors: true,
+  logErrors: true
 };
- class DeepCollector {
+class DeepCollector {
   collection: ICollection;
   countSuccess: number;
   countFailed: number;
   options: IOptions;
 
-  constructor(options: IOptions = defaultOptions) {
+  constructor (options: IOptions = defaultOptions) {
     this.collection = {};
     this.countSuccess = 0;
     this.countFailed = 0;
     this.options = options;
   }
 
-  add(object: unknown): boolean {
+  add (object: unknown): boolean {
     try {
       if (this.checkType(object) !== "object") {
         throw new Error("invalid object");
@@ -53,14 +55,16 @@ const defaultOptions = {
       return false;
     }
 
-    //left addition
+    // left addition
   }
 
-  merge = (collection: ICollection, object: IObject, loc: string) => {
+  merge = (collection: ICollection, object: IObject, loc: string): void => {
     Object.keys(object).forEach(key => {
       const type = this.checkType(object[key]);
       if (type === "object") {
+        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
         if (!collection[key]) {
+          // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
           collection[key] = {} as ICollection;
         }
         if (Array.isArray(collection[key])) {
@@ -91,13 +95,13 @@ const defaultOptions = {
           collection[key] = [];
         }
 
-        //@ts-ignore
+        // @ts-expect-error dont check
         collection[key].push(object[key]);
       }
     });
   };
 
-  private checkType = (o: unknown) => {
+  private readonly checkType = (o: unknown): string => {
     if (Array.isArray(o)) {
       return "array";
     } else if (o instanceof Object) {
@@ -109,6 +113,5 @@ const defaultOptions = {
     }
   };
 }
-
 
 export default DeepCollector;

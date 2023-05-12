@@ -11,6 +11,7 @@
     "dev": "concurrently --kill-others --names \"BUILD,RUN\" -c \"bgBlue.bold,bgMagenta.bold\" \"tsc -w\" \"nodemon -q -w dist dist/index.js\"",
     "tsc": "tsc",
     "lint": "eslint src --ext .js,.ts .",
+    "lint-fix": "eslint src --ext .js,.ts . --fix",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
     "prepare": "npm run build",
     "prepublishOnly": "npm test && npm run lint",
