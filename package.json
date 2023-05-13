@@ -1,6 +1,6 @@
 {
-  "name": "objects-collector",
-  "version": "0.0.2",
+  "name": "objects-collector-merge",
+  "version": "0.0.3",
   "description": "unites multiple object into one.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
