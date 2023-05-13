@@ -25,7 +25,8 @@
     "collector",
     "deep"
   ],
-  "author": "Eliran Amzalag",
+  "homepage": "",
+  "author": "WantedHorizon",
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^29.5.1",
@@ -40,6 +41,10 @@
     "prettier": "^2.8.8",
     "ts-jest": "^29.1.0",
     "typescript": "^5.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wantedHorizon/objects-collector-merge"
   },
   "dependencies": {
     "deep-copy": "^1.4.2"
