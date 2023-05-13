@@ -1,0 +1,199 @@
+{
+  "level1_1": "1",
+  "level1_2": 2,
+  "level1_3": null,
+  "level1_5": [
+    1,
+    "x"
+  ],
+  "level1_6": {
+    "level2_1": "1",
+    "level2_2": 2,
+    "level2_3": null,
+    "level2_5": [
+      1,
+      "x"
+    ],
+    "level2_6": {
+      "level3_1": "1",
+      "level3_2": 2,
+      "level3_3": null,
+      "level3_5": [
+        1,
+        "x"
+      ],
+      "level3_6": {
+        "level4_1": "1",
+        "level4_2": 2,
+        "level4_3": null,
+        "level4_5": [
+          1,
+          "x"
+        ],
+        "level4_6": {
+          "level5_1": "1",
+          "level5_2": 2,
+          "level5_3": null,
+          "level5_5": [
+            1,
+            "x"
+          ],
+          "level5_6": {
+            "level6_1": "1",
+            "level6_2": 2,
+            "level6_3": null,
+            "level6_5": [
+              1,
+              "x"
+            ],
+            "level6_6": {
+              "level7_1": "1",
+              "level7_2": 2,
+              "level7_3": null,
+              "level7_5": [
+                1,
+                "x"
+              ],
+              "level7_6": {
+                "level8_1": "1",
+                "level8_2": 2,
+                "level8_3": null,
+                "level8_5": [
+                  1,
+                  "x"
+                ],
+                "level8_6": {
+                  "level9_1": "1",
+                  "level9_2": 2,
+                  "level9_3": null,
+                  "level9_5": [
+                    1,
+                    "x"
+                  ],
+                  "level9_6": {
+                    "level10_1": "1",
+                    "level10_2": 2,
+                    "level10_3": null,
+                    "level10_5": [
+                      1,
+                      "x"
+                    ],
+                    "level10_6": {
+                      "level11_1": "1",
+                      "level11_2": 2,
+                      "level11_3": null,
+                      "level11_5": [
+                        1,
+                        "x"
+                      ],
+                      "level11_6": {
+                        "level12_1": "1",
+                        "level12_2": 2,
+                        "level12_3": null,
+                        "level12_5": [
+                          1,
+                          "x"
+                        ],
+                        "level12_6": {
+                          "level13_1": "1",
+                          "level13_2": 2,
+                          "level13_3": null,
+                          "level13_5": [
+                            1,
+                            "x"
+                          ],
+                          "level13_6": {
+                            "level14_1": "1",
+                            "level14_2": 2,
+                            "level14_3": null,
+                            "level14_5": [
+                              1,
+                              "x"
+                            ],
+                            "level14_6": {
+                              "level15_1": "1",
+                              "level15_2": 2,
+                              "level15_3": null,
+                              "level15_5": [
+                                1,
+                                "x"
+                              ],
+                              "level15_6": {
+                                "level16_1": "1",
+                                "level16_2": 2,
+                                "level16_3": null,
+                                "level16_5": [
+                                  1,
+                                  "x"
+                                ],
+                                "level16_6": {
+                                  "level17_1": "1",
+                                  "level17_2": 2,
+                                  "level17_3": null,
+                                  "level17_5": [
+                                    1,
+                                    "x"
+                                  ],
+                                  "level17_6": {
+                                    "level18_1": "1",
+                                    "level18_2": 2,
+                                    "level18_3": null,
+                                    "level18_5": [
+                                      1,
+                                      "x"
+                                    ],
+                                    "level18_6": {
+                                      "level19_1": "1",
+                                      "level19_2": 2,
+                                      "level19_3": null,
+                                      "level19_5": [
+                                        1,
+                                        "x"
+                                      ],
+                                      "level19_6": {
+                                        "level20_1": "1",
+                                        "level20_2": 2,
+                                        "level20_3": null,
+                                        "level20_5": [
+                                          1,
+                                          "x"
+                                        ],
+                                        "level20_6": {
+                                          "level21_1": "1",
+                                          "level21_2": 2,
+                                          "level21_3": null,
+                                          "level21_5": [
+                                            1,
+                                            "x"
+                                          ],
+                                          "level21_6": {
+                                            "level22_1": "1",
+                                            "level22_2": 2,
+                                            "level22_3": null,
+                                            "level22_5": [
+                                              1,
+                                              "x"
+                                            ],
+                                            "level22_6": {}
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
