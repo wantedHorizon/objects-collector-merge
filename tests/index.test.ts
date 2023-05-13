@@ -1,7 +1,6 @@
 import  DeepCollector  from "../src/index";
 import { basicObjects, level2Objects, results } from "./jsons";
 
-import structuredClone from "@ungap/structured-clone";
 const initNewCollector = () => {
   return new DeepCollector({ skipOnErrors: true,logErrors:false });
 };

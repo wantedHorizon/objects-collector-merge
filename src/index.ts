@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/restrict-template-expressions */
 /* eslint-disable @typescript-eslint/strict-boolean-expressions */
-import Clone from "@ungap/structured-clone";
+import Clone from "deep-copy";
 interface ICollection {
   [key: string]: ICollection | BasicType[]
 }
