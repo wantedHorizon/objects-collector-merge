@@ -33,7 +33,11 @@ collection[key1][key2][keyX]={...}
 # Usage examples:
 
 ```js
-var collector = require('objects-collector-merge')
+import ObjectCollector from "objects-collector-merge"
+const collector =new DeepCollector({ skipOnErrors: true,logErrors:false });
+
+
+
 ```
 ### Basic Example
 
@@ -79,6 +83,8 @@ console.log(collector.collection)//
 Let's suppose we have 2 complex JSON objects and we want to merge them.
 ```js
 
+import ObjectCollector from "objects-collector-merge"
+const collector =new DeepCollector({ skipOnErrors: true,logErrors:false });
 
 const complexObject1 = {
   key1: {
